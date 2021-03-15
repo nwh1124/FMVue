@@ -9,6 +9,7 @@ import '/index.css'
 // 전역 페이지 로딩
 import HomeMainPage from './pages/HomeMainPage.vue'
 import UsrLoginPage from './pages/UsrLoginPage.vue'
+import UsrMainPage from './pages/UsrMainPage.vue'
 import { createWebHistory } from 'vue-router'
 
 const routes = [
@@ -19,7 +20,11 @@ const routes = [
     {
         path: '/usr/login',
         component: UsrLoginPage
-    }
+    },
+    {
+        path: '/usr/main',
+        component: UsrMainPage
+    },
 ]
 
 const router = createRouter({
