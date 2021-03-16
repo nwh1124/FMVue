@@ -16,8 +16,11 @@
         </div>
 
         <div class="flex flex-col flex-grow mx-2 border-black">
-            <div class="py-2 px-2">
-                조의문 리스트
+            <div class="py-2 px-2 flex justify-between">
+                <span>조의문 리스트</span>
+                <router-link to="/usr/conList">
+                    <span>조의문 전체보기</span>
+                </router-link>
             </div>
             <div class="py-2 px-2 flex flex-col flex-grow justify-center">
                 <span class="block">리스팅</span>

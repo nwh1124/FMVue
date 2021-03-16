@@ -10,6 +10,8 @@ import '/index.css'
 import HomeMainPage from './pages/HomeMainPage.vue'
 import UsrLoginPage from './pages/UsrLoginPage.vue'
 import UsrMainPage from './pages/UsrMainPage.vue'
+import UsrCondolenceListPage from './pages/UsrCondolenceList.vue'
+
 import { createWebHistory } from 'vue-router'
 
 const routes = [
@@ -24,6 +26,10 @@ const routes = [
     {
         path: '/usr/main',
         component: UsrMainPage
+    },
+    {
+        path: '/usr/conList',
+        component: UsrCondolenceListPage
     },
 ]
 
