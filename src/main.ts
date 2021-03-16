@@ -10,7 +10,10 @@ import '/index.css'
 import HomeMainPage from './pages/HomeMainPage.vue'
 import UsrLoginPage from './pages/UsrLoginPage.vue'
 import UsrMainPage from './pages/UsrMainPage.vue'
-import UsrCondolenceListPage from './pages/UsrCondolenceList.vue'
+import UsrCondolenceListPage from './pages/UsrCondolenceListPage.vue'
+import UsrSendMsgPage from './pages/UsrSendMsgPage.vue'
+import UsrSendConMoneyPage from './pages/UsrSendConMoneyPage.vue'
+import UsrFindMapPage from './pages/UsrFindMapPage.vue'
 
 import { createWebHistory } from 'vue-router'
 
@@ -30,6 +33,18 @@ const routes = [
     {
         path: '/usr/conList',
         component: UsrCondolenceListPage
+    },
+    {
+        path: '/usr/sendMsg',
+        component: UsrSendMsgPage
+    },
+    {
+        path: '/usr/sendConMoney',
+        component: UsrSendConMoneyPage
+    },
+    {
+        path: '/usr/findMap',
+        component: UsrFindMapPage
     },
 ]
 
