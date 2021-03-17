@@ -24,16 +24,20 @@
             </div>
             <div class="py-2 px-2 flex flex-col flex-grow justify-center">
                 <ul v-bind:key="condolence.id" v-for="condolence in state.condolence">
-                    <li class="text-sm flex justify-between">
-                        <span>{{condolence.writer}}</span>
-                        <span>{{condolence.body}}</span>
-                        <span>{{condolence.regDate}}</span>
-                    </li>                    
+                    <li class="text-sm mb-1">
+                        <div class="flex justify-between">
+                            <span>{{condolence.writer}}</span>
+                            <button>수정/삭제</button>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>{{condolence.body}}</span>
+                            <span>{{condolence.regDate}}</span>
+                        </div>
+                    </li>               
                 </ul>
             </div>
             <div class="flex pl-2 py-2">
-                <input type="text" class="flex flex-grow p-2 h-8 border-black" placeholder="조의문을 작성해주세요." />
-                <button class="px-2 mx-2 border-black">작성</button>
+                <button class="px-2 mr-2 h-10 w-full border-black">조의문 작성</button>
             </div>
         </div>
 
@@ -46,7 +50,7 @@
 
             <router-link to="/usr/sendConMoney" 
             class="flex-grow border-black mx-4 w-24 h-28 flex justify-center items-center">
-                부조금 보내기
+                부조금 전송
             </router-link>
 
             <router-link to="/usr/findMap" 

@@ -6,6 +6,7 @@
         <span class="ml-4">등불 :: 삼가 고인의 명복을 빕니다</span>
       </div>
       <div class="w-full h-12 bg-black text-white flex justify-center items-center">
+        <router-link class="ml-4" to="/test">테스트</router-link>
         <router-link class="ml-4" to="/usr/login">로그인</router-link>
         <router-link class="ml-4" to="/usr/main">유족 메인</router-link>  
       </div>      

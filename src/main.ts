@@ -8,6 +8,7 @@ import '/index.css'
 
 // 전역 페이지 로딩
 import HomeMainPage from './pages/HomeMainPage.vue'
+import TestPage from './pages/TestPage.vue'
 import UsrLoginPage from './pages/UsrLoginPage.vue'
 import UsrMainPage from './pages/UsrMainPage.vue'
 import UsrCondolenceListPage from './pages/UsrCondolenceListPage.vue'
@@ -28,6 +29,10 @@ const routes = [
     {
         path: '/',
         component: HomeMainPage
+    },
+    {
+        path: '/test',
+        component: TestPage
     },
     {
         path: '/usr/login',
