@@ -23,12 +23,13 @@
                 </router-link>
             </div>
             <div class="py-2 px-2 flex flex-col flex-grow justify-center">
-                <span class="block">리스팅</span>
-                <span class="block">리스팅</span>
-                <span class="block">리스팅</span>
-                <span class="block">리스팅</span>
-                <span class="block">리스팅</span>
-                <span class="block">리스팅</span>
+                <ul v-bind:key="condolence.id" v-for="condolence in state.condolence">
+                    <li class="text-sm flex justify-between">
+                        <span>{{condolence.writer}}</span>
+                        <span>{{condolence.body}}</span>
+                        <span>{{condolence.regDate}}</span>
+                    </li>                    
+                </ul>
             </div>
             <div class="flex pl-2 py-2">
                 <input type="text" class="flex flex-grow p-2 h-8 border-black" placeholder="조의문을 작성해주세요." />
@@ -55,14 +56,54 @@
             
         </div>
 
-    </div>    
+
+    </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, reactive, getCurrentInstance, onMounted, watch } from 'vue'
+import { ICondolence } from '../types'
+import { MainApi } from '../apis'
 
 export default defineComponent({
-    name: 'UsrLoginPage'
+    name: 'UsrLoginPage',
+    props:{
+        boardId:{
+            type: Number,
+            reqeured: true,
+            default: 1,
+        }
+    },
+
+    setup(props){        
+        const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
+
+        const newCondolenceBodyElRef = ref<HTMLInputElement>();
+
+        const state = reactive({
+            condolence: [] as ICondolence[]
+        });
+
+        function loadCondolence(boardId:number){
+            mainApi.condolence_list(boardId)
+            .then(axiosResponse => {
+                state.condolence = axiosResponse.data.body.condolences;
+            })
+        };
+
+        onMounted(() => {
+            loadCondolence(props.boardId);
+        });
+
+        watch(() => props.boardId, (newValue, oldValue) => {
+            loadCondolence(props.boardId);
+        })
+
+        return{
+         state,
+         newCondolenceBodyElRef,
+        }
+    }
 })
 </script>
 
