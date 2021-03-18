@@ -26,8 +26,9 @@
                 <ul v-bind:key="condolence.id" v-for="condolence in state.condolence">
                     <li class="text-sm mb-1">
                         <div class="flex justify-between">
-                            <span>{{condolence.writer}}</span>
-                            <button>수정/삭제</button>
+                            <span>{{condolence.writer}}</span>              
+                            <input type="hidden" value="{{condolence.id}}" ref="modifyOrDeleteCondolenceId">
+                            <button v-on:click="modifyOrDeleteCondolence">수정삭제</button>
                         </div>
                         <div class="flex justify-between">
                             <span>{{condolence.body}}</span>
@@ -37,7 +38,8 @@
                 </ul>
             </div>
             <div class="flex pl-2 py-2">
-                <button class="px-2 mr-2 h-10 w-full border-black">조의문 작성</button>
+                <router-link to="/usr/write" class="px-2 mr-2 h-10 w-full border-black 
+                flex justify-center items-center">조의문 작성</router-link>
             </div>
         </div>
 
@@ -82,8 +84,6 @@ export default defineComponent({
     setup(props){        
         const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
 
-        const newCondolenceBodyElRef = ref<HTMLInputElement>();
-
         const state = reactive({
             condolence: [] as ICondolence[]
         });
@@ -105,10 +105,33 @@ export default defineComponent({
 
         return{
          state,
-         newCondolenceBodyElRef,
         }
     }
+
 })
+
+function modifyOrDeleteCondolence(){
+        alert('확인');
+
+        const modifyOrDeleteCondolenceIdRef = ref<HTMLInputElement>();
+
+        if( modifyOrDeleteCondolenceIdRef.value == null ){
+            return;
+        }
+
+        const modifyOrDeleteCondolenceId = modifyOrDeleteCondolenceIdRef.value;
+
+        modifyOrDeleteCondolenceId.value = modifyOrDeleteCondolenceId.value.trim();
+
+        if( modifyOrDeleteCondolenceId.value.length == 0 ){
+            alert('존재하지 않는 조의문입니다.')
+            modifyOrDeleteCondolenceId.focus();
+
+            return;
+        }
+
+}
+
 </script>
 
 <style>

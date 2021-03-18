@@ -15,6 +15,8 @@ import UsrCondolenceListPage from './pages/UsrCondolenceListPage.vue'
 import UsrSendMsgPage from './pages/UsrSendMsgPage.vue'
 import UsrSendConMoneyPage from './pages/UsrSendConMoneyPage.vue'
 import UsrFindMapPage from './pages/UsrFindMapPage.vue'
+import UsrWriteCondolencePage from './pages/UsrWriteCondolencePage.vue'
+import UsrPasswordCheckPage from './pages/UsrPasswordCheckPage.vue'
 
 import { createWebHistory } from 'vue-router'
 
@@ -57,6 +59,14 @@ const routes = [
     {
         path: '/usr/findMap',
         component: UsrFindMapPage
+    },
+    {
+        path: '/usr/write',
+        component: UsrWriteCondolencePage
+    },
+    {
+        path: '/usr/passCheck',
+        component: UsrPasswordCheckPage
     },
 ]
 

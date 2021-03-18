@@ -85,9 +85,12 @@ interface Base__IResponseBodyType1{
 
 // /usr/condolence/list 의 응답 타입
 export interface MainApi__condolence_list__IResponseBody extends Base__IResponseBodyType1 {
-    body:{
-      condolences: ICondolence[]
-    };
+  body:{
+    condolences: ICondolence[]
+  };
+}
+export interface MainApi__condolence_doWrite__IResponseBody extends Base__IResponseBodyType1 {
+
 }
 
 
@@ -104,6 +107,11 @@ export class MainApi extends HttpClient {
   // http://localhost:8021/usr/condolence/list?boardId=? 를 요청하고 응답을 받아오는 함수
   public condolence_list(boardId: number) {
     return this.instance.get<MainApi__condolence_list__IResponseBody>(`/usr/condolence/list?boardId=${boardId}`);
+  }
+
+  // http://localhost:8021/usr/condolence/doAdd?writer=?&password=?&body=? 를 요청하고 응답을 받아오는 함수
+  public condolence_doWrite(writer:string, password:string, body:string) {
+    return this.instance.post<MainApi__condolence_doWrite__IResponseBody>(`/usr/condolence/doAdd?writer=${writer}&password=${password}&body=${body}`);
   }
 
 } 
