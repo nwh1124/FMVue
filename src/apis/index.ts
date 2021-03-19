@@ -89,8 +89,14 @@ export interface MainApi__condolence_list__IResponseBody extends Base__IResponse
     condolences: ICondolence[]
   };
 }
-export interface MainApi__condolence_doWrite__IResponseBody extends Base__IResponseBodyType1 {
 
+export interface MainApi__condolence_doWrite__IResponseBody extends Base__IResponseBodyType1 {
+}
+
+export interface MainApi__condolence_getById__IResponseBody extends Base__IResponseBodyType1 {
+  body: {
+    condolence: ICondolence,
+  }
 }
 
 
@@ -112,6 +118,11 @@ export class MainApi extends HttpClient {
   // http://localhost:8021/usr/condolence/doAdd?writer=?&password=?&body=? 를 요청하고 응답을 받아오는 함수
   public condolence_doWrite(writer:string, password:string, body:string) {
     return this.instance.post<MainApi__condolence_doWrite__IResponseBody>(`/usr/condolence/doAdd?writer=${writer}&password=${password}&body=${body}`);
+  }
+
+  // http://localhost:8021/usr/condolence/doAdd?writer=?&password=?&body=? 를 요청하고 응답을 받아오는 함수
+  public condolence_getById(id:number) {
+    return this.instance.post<MainApi__condolence_getById__IResponseBody>(`/usr/condolence/showCondolence?id=${id}`);
   }
 
 } 

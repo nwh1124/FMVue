@@ -1,5 +1,7 @@
 <template>
-    <div class="container mx-auto px-2 h-full flex flex-col">          
+    <div class="container mx-auto px-2 h-full flex flex-col">   
+
+        <div ></div>       
 
         <div class="flex px-2 py-4">
             
@@ -26,9 +28,11 @@
                 <ul v-bind:key="condolence.id" v-for="condolence in state.condolence">
                     <li class="text-sm mb-1">
                         <div class="flex justify-between">
-                            <span>{{condolence.writer}}</span>              
-                            <input type="hidden" value="{{condolence.id}}" ref="modifyOrDeleteCondolenceId">
-                            <button v-on:click="modifyOrDeleteCondolence">수정삭제</button>
+                            <span>{{condolence.writer}}</span>
+                            <form v-on:submit.prevent="replaceToPassCheckPage(condolence.id)">
+                                <input type="submit" value="수정/삭제"
+                                class="bg-white">
+                            </form>                                          
                         </div>
                         <div class="flex justify-between">
                             <span>{{condolence.body}}</span>
@@ -70,6 +74,8 @@
 import { defineComponent, ref, reactive, getCurrentInstance, onMounted, watch } from 'vue'
 import { ICondolence } from '../types'
 import { MainApi } from '../apis'
+import { useRoute } from 'vue-router';
+import { Router } from 'vue-router';
 
 export default defineComponent({
     name: 'UsrLoginPage',
@@ -82,8 +88,10 @@ export default defineComponent({
     },
 
     setup(props){        
+        const route = useRoute();
+        const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
         const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
-
+        
         const state = reactive({
             condolence: [] as ICondolence[]
         });
@@ -95,6 +103,12 @@ export default defineComponent({
             })
         };
 
+        function replaceToPassCheckPage(condolenceId:number){
+            localStorage.setItem('condolenceId', condolenceId + "");
+
+            router.replace('../passCheck');
+        }
+
         onMounted(() => {
             loadCondolence(props.boardId);
         });
@@ -105,32 +119,11 @@ export default defineComponent({
 
         return{
          state,
+         replaceToPassCheckPage,
         }
     }
 
 })
-
-function modifyOrDeleteCondolence(){
-        alert('확인');
-
-        const modifyOrDeleteCondolenceIdRef = ref<HTMLInputElement>();
-
-        if( modifyOrDeleteCondolenceIdRef.value == null ){
-            return;
-        }
-
-        const modifyOrDeleteCondolenceId = modifyOrDeleteCondolenceIdRef.value;
-
-        modifyOrDeleteCondolenceId.value = modifyOrDeleteCondolenceId.value.trim();
-
-        if( modifyOrDeleteCondolenceId.value.length == 0 ){
-            alert('존재하지 않는 조의문입니다.')
-            modifyOrDeleteCondolenceId.focus();
-
-            return;
-        }
-
-}
 
 </script>
 

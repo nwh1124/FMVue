@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import { createRouter } from 'vue-router'
+import { createApp, reactive, computed } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import App from './App.vue'
 
@@ -16,9 +16,9 @@ import UsrSendMsgPage from './pages/UsrSendMsgPage.vue'
 import UsrSendConMoneyPage from './pages/UsrSendConMoneyPage.vue'
 import UsrFindMapPage from './pages/UsrFindMapPage.vue'
 import UsrWriteCondolencePage from './pages/UsrWriteCondolencePage.vue'
-import UsrPasswordCheckPage from './pages/UsrPasswordCheckPage.vue'
+import UsrModifyOrDeletePage from './pages/UsrModifyOrDeletePage.vue'
+import PassCheckPage from './pages/PassCheckPage.vue'
 
-import { createWebHistory } from 'vue-router'
 
 // MainApi 로딩
 import { MainApi } from './apis'
@@ -65,8 +65,12 @@ const routes = [
         component: UsrWriteCondolencePage
     },
     {
-        path: '/usr/passCheck',
-        component: UsrPasswordCheckPage
+        path: '/usr/modifyOrDelete',
+        component: UsrModifyOrDeletePage        
+    },
+    {
+        path: '/passCheck',
+        component: PassCheckPage
     },
 ]
 
