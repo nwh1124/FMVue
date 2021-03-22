@@ -104,7 +104,7 @@ export default defineComponent({
         };
 
         function replaceToPassCheckPage(condolenceId:number){
-            localStorage.setItem('condolenceId', condolenceId + "");
+            localStorage.setItem('condolenceId', condolenceId + "");  
 
             router.replace('../passCheck');
         }

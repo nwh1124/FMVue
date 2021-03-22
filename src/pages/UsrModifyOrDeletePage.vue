@@ -8,6 +8,7 @@
         <span class="pl-1">작성자</span>
         <input ref="modOrDelCondolenceWriterElRef"
         type="text" class="h-8 w-full mt-1 border-black pl-2"
+        id="modOrDelCondolenceWriter"
         placeholder="이름을 입력해주세요.">
       </div>
 
@@ -43,6 +44,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
   name: 'UsrModifyOrDeletePage',
@@ -51,23 +53,51 @@ export default defineComponent({
     const modOrDelCondolenceWriterElRef = ref<HTMLInputElement>();
     const modOrDelCondolenceBodyElRef = ref<HTMLInputElement>();
 
-    const writer = localStorage.getItem("writer");
+    const writer = localStorage.getItem("modOrDelCondolenceWriter");
+    const body = localStorage.getItem("modOrDelCondolenceBody");
 
-    // onMounted(){
+    onMounted(() => {
 
-    //   if(writer == null){
-    //     return;
-    //   }
-    //   modOrDelCondolenceWriterElRef.value = writer;
+      if(modOrDelCondolenceWriterElRef.value == null){
+        return;
+      }
+      
+       let modOrDelCondolenceWriterEl = modOrDelCondolenceWriterElRef.value;
 
-    // }
+       if(modOrDelCondolenceWriterEl == null){
+        return;
+       }
 
-    const modOrDelCondolenceWriterEl = modOrDelCondolenceWriterElRef.value;
-    const modOrDelCondolenceBodyEl = modOrDelCondolenceBodyElRef.value;
+       if(writer == null){
+        return;
+       }
 
+       modOrDelCondolenceWriterEl.value = writer;
+
+       if(modOrDelCondolenceBodyElRef.value == null){
+         return;
+       }
+
+       let modOrDelCondolenceBodyEl = modOrDelCondolenceBodyElRef.value;
+
+       if(modOrDelCondolenceBodyEl.value == null){
+        return;
+       }
+
+      if(body == null){
+        return;
+      }
+
+      modOrDelCondolenceBodyEl.value = body;
+
+    })
+
+      
+  
     return {
       modOrDelCondolenceWriterElRef,
-      modOrDelCondolenceBodyElRef,
+      writer,
+      body,
     }
   }
 
