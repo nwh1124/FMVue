@@ -9,14 +9,16 @@
         <input ref="modOrDelCondolenceWriterElRef"
         type="text" class="h-8 w-full mt-1 border-black pl-2"
         id="modOrDelCondolenceWriter"
-        placeholder="이름을 입력해주세요.">
+        placeholder="이름을 입력해주세요."
+        :value="writer">
       </div>
 
       <div class="mx-4 flex flex-col flex-grow">
         <span class="pl-1">조의문</span>
         <textarea ref="modOrDelCondolenceBodyElRef" id="" cols="30" rows="10"
         class="border-black flex-grow mt-1 pl-2 pt-2"        
-        placeholder="조의문을 작성해주세요.">      
+        placeholder="조의문을 작성해주세요.">
+        {{body}}      
         </textarea>
       </div>
 
@@ -27,7 +29,7 @@
     </form>
 
     <form class="mx-4 mb-4 border-black" v-on:submit.prevent="">
-      <input type="submit" value="삭제하기"
+      <input type="submit" value="수정하기"
       class="bg-white block center w-full py-2">
     </form>
 
@@ -54,45 +56,7 @@ export default defineComponent({
     const modOrDelCondolenceBodyElRef = ref<HTMLInputElement>();
 
     const writer = localStorage.getItem("modOrDelCondolenceWriter");
-    const body = localStorage.getItem("modOrDelCondolenceBody");
-
-    onMounted(() => {
-
-      if(modOrDelCondolenceWriterElRef.value == null){
-        return;
-      }
-      
-       let modOrDelCondolenceWriterEl = modOrDelCondolenceWriterElRef.value;
-
-       if(modOrDelCondolenceWriterEl == null){
-        return;
-       }
-
-       if(writer == null){
-        return;
-       }
-
-       modOrDelCondolenceWriterEl.value = writer;
-
-       if(modOrDelCondolenceBodyElRef.value == null){
-         return;
-       }
-
-       let modOrDelCondolenceBodyEl = modOrDelCondolenceBodyElRef.value;
-
-       if(modOrDelCondolenceBodyEl.value == null){
-        return;
-       }
-
-      if(body == null){
-        return;
-      }
-
-      modOrDelCondolenceBodyEl.value = body;
-
-    })
-
-      
+    const body = localStorage.getItem("modOrDelCondolenceBody");      
   
     return {
       modOrDelCondolenceWriterElRef,
