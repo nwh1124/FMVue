@@ -28,7 +28,7 @@
 
     </form>
 
-    <form class="mx-4 mb-4 border-black" v-on:submit.prevent="">
+    <form class="mx-4 mb-4 border-black" v-on:submit.prevent="DeleteCondolence(id)">
       <input type="submit" value="삭제하기"
       class="bg-white block center w-full py-2">
     </form>
@@ -84,16 +84,30 @@ export default defineComponent({
 
         router.replace('main');
       })
-
-      
       
     })
+
+    const DeleteCondolence = ((id:string) => {
+      
+      mainApi.condolence_doDelete(parseInt(id))
+      .then(axiosResponse => {
+        alert(axiosResponse.data.msg)
+
+          if(axiosResponse.data.fail){
+          return;
+        }
+
+        router.replace('main');
+      })
+    })
+
 
     return {
       id,
       writer,
       body,
       ModifyCondolence,
+      DeleteCondolence,
     }
 
   }

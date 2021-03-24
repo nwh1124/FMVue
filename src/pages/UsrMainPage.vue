@@ -24,7 +24,8 @@
                     <span>조의문 전체보기</span>
                 </router-link>
             </div>
-            <div class="py-2 px-2 flex flex-col flex-grow justify-center">
+            <div class="py-2 px-2 flex flex-col flex-grow justify-center"
+            id="usrMainCondolenceList" ref="usrMainCondolenceList">
                 <ul v-bind:key="condolence.id" v-for="condolence in state.condolence">
                     <li class="text-sm mb-1">
                         <div class="flex justify-between">
@@ -84,11 +85,10 @@ export default defineComponent({
             type: Number,
             reqeured: true,
             default: 1,
-        }
+        },
     },
 
     setup(props){        
-        const route = useRoute();
         const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
         const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
         
@@ -110,7 +110,7 @@ export default defineComponent({
         }
 
         onMounted(() => {
-            loadCondolence(props.boardId);
+            loadCondolence(props.boardId); 
         });
 
         watch(() => props.boardId, (newValue, oldValue) => {
@@ -120,10 +120,23 @@ export default defineComponent({
         return{
          state,
          replaceToPassCheckPage,
+         init,
         }
-    }
+    },
 
 })
+
+const init = () => {
+    const usrMainCondolenceListHeight = document.querySelector('#usrMainCondolenceList');
+    
+    if(usrMainCondolenceListHeight == null){
+        return;
+    }
+
+    const condolenceListSize = Math.floor((usrMainCondolenceListHeight?.clientHeight - 16) / 44)
+
+    return condolenceListSize;
+}
 
 </script>
 
