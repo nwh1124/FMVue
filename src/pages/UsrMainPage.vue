@@ -63,10 +63,9 @@
             <router-link to="/usr/findMap" 
             class="flex-grow border-black w-24 h-28 flex justify-center items-center">
                 장례식장 위치
-            </router-link>
+            </router-link>            
             
         </div>
-
 
     </div>
 </template>
@@ -87,11 +86,11 @@ export default defineComponent({
             default: 1,
         },
     },
-
     setup(props){        
         const router:Router = getCurrentInstance()?.appContext.config.globalProperties.$router;
         const mainApi:MainApi = getCurrentInstance()?.appContext.config.globalProperties.$mainApi;
-        
+      
+
         const state = reactive({
             condolence: [] as ICondolence[]
         });
@@ -120,23 +119,12 @@ export default defineComponent({
         return{
          state,
          replaceToPassCheckPage,
-         init,
         }
-    },
+    }
 
 })
 
-const init = () => {
-    const usrMainCondolenceListHeight = document.querySelector('#usrMainCondolenceList');
-    
-    if(usrMainCondolenceListHeight == null){
-        return;
-    }
 
-    const condolenceListSize = Math.floor((usrMainCondolenceListHeight?.clientHeight - 16) / 44)
-
-    return condolenceListSize;
-}
 
 </script>
 
