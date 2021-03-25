@@ -107,6 +107,12 @@ export interface MainApi__condolence_doDelete__IResponseBody extends Base__IResp
   id:number
 }
 
+export interface MainApi__condolence_doSendSms__IResponseBody extends Base__IResponseBodyType1 {
+  from:string,
+  to:string,
+  rb:string
+}
+
 
 // http://localhost:8021/ 와의 통신장치
 export class MainApi extends HttpClient {
@@ -141,6 +147,11 @@ export class MainApi extends HttpClient {
   // http://localhost:8021/usr/condolence/doDelete?id=? 를 요청하고 응답을 받아오는 함수
   public condolence_doDelete(id:number) {
     return this.instance.post<MainApi__condolence_doDelete__IResponseBody>(`/usr/condolence/doDelete?id=${id}`);
+  }
+
+  // http://localhost:8021/usr/condolence/doDelete?id=? 를 요청하고 응답을 받아오는 함수
+  public condolence_doSendSms(from:string, to:string, msg:string) {
+    return this.instance.post<MainApi__condolence_doSendSms__IResponseBody>(`/usr/home/doSendSms?from=${from}&to=${to}&msg=${msg}`);
   }
 
 } 

@@ -1,5 +1,5 @@
 <template>
-    <div class="container max-w-4xl mx-auto px-2 h-full flex flex-col">          
+    <div class="container mx-auto px-2 h-full flex flex-col">          
 
         <div class="flex-grow"></div>
 

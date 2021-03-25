@@ -56,7 +56,6 @@ export default defineComponent({
 
     function condolencePassCheckReady(){
       const condolenceId = localStorage.getItem('condolenceId');
-      const condolencePassEl = condolencePassElRef.value;
 
       if( condolenceId == null ){
         return;

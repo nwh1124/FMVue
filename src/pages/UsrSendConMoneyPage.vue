@@ -15,7 +15,8 @@
         </div>
         
         <button class="h-12 mx-2 mb-4 border-black 
-        flex justify-center items-center">
+        flex justify-center items-center"
+        onclick="startPay()">
           부조금 보내기[필요한가?]
         </button>
 

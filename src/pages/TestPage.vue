@@ -1,30 +1,29 @@
-<template>
-    <div>
-        {{ width }}, {{ height }}
+<template>    
+    <div class="container mx-auto">
+        <form v-on:submit.prevent="testMethod">
+            <input type="submit">
+        </form>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            width: 0,
-            height: 0
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    name: 'TestPage',
+    setup(){
+        const str = 'wow'
+        function testMethod(){
+            alert(str)
+        }
+        return{
+            testMethod,
         }
     },
-    mounted() {
-        // console.log("ready...");
-        window.addEventListener('resize', this.handleResize);
-	},
-    beforeDestroy() {
-        // console.log("beforeDestroy...");
-        window.removeEventListener('resize', this.handleResize);
-    },
-    methods: {
-        handleResize(event) {
-            this.width = window.innerWidth;
-            this.height = window.innerHeight;
+    computed:{
+        testCom: () => {
+            return 'd';
         }
     }
-}
+})
 </script>

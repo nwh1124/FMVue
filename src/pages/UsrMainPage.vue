@@ -66,6 +66,7 @@
             </router-link>            
             
         </div>
+    
 
     </div>
 </template>
@@ -118,9 +119,16 @@ export default defineComponent({
 
         return{
          state,
-         replaceToPassCheckPage,
+         replaceToPassCheckPage,         
         }
-    }
+    },
+
+    computed: {
+        init : () => {
+            
+        return ;
+        }
+    },
 
 })
 
